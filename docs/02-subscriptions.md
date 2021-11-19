@@ -15,6 +15,8 @@ $user = App\User::find(1);
 $result = $user->newSubscription('main', 'premium')->create();
 ```
 
+The first argument passed to the `newSubscription` method should be the internal name of the subscription. If your application only offers a single subscription, you might call this `default` or `primary`. This subscription name is only for internal application usage and is not meant to be shown to users. In addition, it should not contain spaces and it should never be changed after creating the subscription. The second argument is the specific price plan the user is subscribing to. This value should correspond to the plans’s identifier in your `config/cashier_plans.php`.
+
 If the customer already has a valid Mollie mandate, the `$result` will be a `Subscription`.
 
 If the customer has no valid Mollie mandate yet, the `$result` will be a `RedirectToCheckoutResponse`, redirecting the
